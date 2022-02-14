@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <main class="mx-auto w-1/2">
+        <h1 class="text-6xl my-16 text-center font-semibold text-sky-600">Welcome to account</h1>
+
+
+        <section class="grid grid-cols-3 gap-4">
+
+            <div class="bg-yellow-300 rounded p-4">
+                <h3 class="text-2xl">Deposite</h3>
+                <h4 class="text-4xl">$<span id="drun">000</span></h4>
+            </div>
+            <div class="bg-pink-300 rounded p-4">
+                <h3 class="text-2xl">Withdraw</h3>
+                <h4 class="text-4xl">$<span id="wrun">000</span></h4>
+            </div>
+            <div class="bg-green-300 rounded p-4">
+                <h3 class="text-2xl">Balance</h3>
+                <h4 class="text-4xl">$<span id="brun">000</span></h4>
+            </div>
+            <div></div>
+
+        </section>
+        <section class="grid grid-cols-2 gap-4">
+
+            <div class="bg-sky-300 rounded p-4">
+                <input id="dinpt" class="bg-yellow-200 rounded p-2 text-2xl my-3 border-2 border-blue-700" type="text">
+                <br>
+                <button id="dbtn"
+                    class=" border-2 border-blue-700 bg-yellow-400 text-white bold rounded p-2 text-2xl">Deposite</button>
+            </div>
+            <div class="bg-sky-300 rounded p-4">
+                <input id="winpt" class="bg-pink-200 rounded p-2 text-2xl my-3 border-2 border-blue-700" type="text">
+                <br>
+                <button id="wbtn"
+                    class=" border-2 border-blue-700 bg-pink-400 text-white rounded bold p-2 text-2xl">Withdraw</button>
+            </div>
+        </section>
+
+
+        <script>
+
+            function resultValue(fvalue, ivalue, bool) {
+                const inputField = parseFloat(document.getElementById(ivalue).value);
+                const valueField = parseFloat(document.getElementById(fvalue).innerText);
+
+                if (inputField >= 0 && typeof inputField == 'number') {
+                    if (bool == true) {
+                        const result = valueField + inputField
+                        return result;
+                    }
+                    else {
+                        const result = valueField - inputField
+                        return result;
+                    }
+                }
+                else {
+                    return ('00.00');
+                }
+            }
+
+            document.getElementById('dbtn').addEventListener('click', function () {
+
+                // const newDeposite = parseFloat(document.getElementById('dinpt').value)
+                // const runningDeposite = parseFloat(document.getElementById('drun').innerText)
+                // const runningBalance = parseFloat(document.getElementById('brun').innerText)
+                // const totalDeposite = newDeposite + runningDeposite
+                // const totalBalance = newDeposite + runningBalance
+
+                document.getElementById('drun').innerText = resultValue('drun', 'dinpt', true)
+                document.getElementById('brun').innerText = resultValue('brun', 'dinpt', true)
+                document.getElementById('dinpt').value = '00.00'
+            })
+
+
+            document.getElementById('wbtn').addEventListener('click', function () {
+
+                // const newWithdraw = parseFloat(document.getElementById('winpt').value)
+
+                // const runningWithdraw = parseFloat(document.getElementById('wrun').innerText)
+                // const runningBalance = parseFloat(document.getElementById('brun').innerText)
+
+                // const totalWithdraw = runningWithdraw + newWithdraw
+
+                // const totalBalance = runningBalance - newWithdraw
+
+                document.getElementById('wrun').innerText = resultValue('wrun', 'winpt', true)
+                document.getElementById('brun').innerText = resultValue('brun', 'winpt', false)
+                document.getElementById('winpt').value = '00.00'
+            })
+
+        </script>
+    </main>
+</body>
+
+</html>

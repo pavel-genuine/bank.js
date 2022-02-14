@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <main class="mx-auto w-1/2">
+        <h1 class="text-6xl my-16 text-center font-semibold text-sky-600">Welcome to account</h1>
+
+        
+
+        </section>
+        <section class="grid grid-cols-2 gap-4">
+
+            <div class="bg-sky-300 rounded p-4">
+                <input id="depositeInpute" class="bg-yellow-200 rounded p-2 text-2xl my-3 border-2 border-blue-700"
+                    type="text">
+                <br>
+                <button id="depositeButton"
+                    class=" border-2 border-blue-700 bg-yellow-400 text-white bold rounded p-2 text-2xl">Deposite</button>
+            </div>
+            <div class="bg-sky-300 rounded p-4">
+                <input id="withdrawInput" class="bg-pink-200 rounded p-2 text-2xl my-3 border-2 border-blue-700"
+                    type="text">
+                <br>
+                <button id="withdrawButton"
+                    class=" border-2 border-blue-700 bg-pink-400 text-white rounded bold p-2 text-2xl">Withdraw</button>
+            </div>
+        </section>
+
+
+        <script>
+            function resultValue(text, input, addStatus) {
+
+
+                const valueField = parseFloat(document.getElementById(text).innerText);
+                const inputField = parseFloat(document.getElementById(input).value);
+
+                if (document.getElementById(text).innerText == 'orry!' && document.getElementById(input).value == '') {
+                    return 0
+                }
+                if (document.getElementById(text).innerText == 'orry!') {
+                    return inputField
+                }
+                if (document.getElementById(input).value == '') {
+                    return valueField
+                }
+                else if (document.getElementById(input).value >= 0) {
+                    if (addStatus == true) {
+                        const result = valueField + inputField
+                        return result;
+                    }
+
+                    else {
+                        const result = valueField - inputField
+                        if (result >= 0 && inputField <= result) {
+                            return result;
+                        }
+                        else {
+                            return 'orry!';
+                        }
+                    }
+                }
+                else {
+                    return valueField;
+                }
+
+
+            }
+
+            document.getElementById('depositeButton').addEventListener('click', function () {
+                document.getElementById('currentDeposite').innerText = resultValue('currentDeposite', 'depositeInpute', true)
+                document.getElementById('currentBalance').innerText = resultValue('currentBalance', 'depositeInpute', true)
+                document.getElementById('depositeInpute').value = ''
+            })
+
+
+            document.getElementById('withdrawButton').addEventListener('click', function () {
+                document.getElementById('currentWithdraw').innerText = resultValue('currentWithdraw', 'withdrawInput', true)
+                document.getElementById('currentBalance').innerText = resultValue('currentBalance', 'withdrawInput', false)
+                document.getElementById('withdrawInput').value = ''
+            })
+
+        </script>
+    </main>
+</body>
+
+</html>
